@@ -1,4 +1,4 @@
-FROM python:2.7-onbuild
+FROM python:2.7
 MAINTAINER Decheng Zhang <killercentury@gmail.com>
 
 # Env
@@ -14,3 +14,8 @@ RUN mkdir -p /srv/var && \
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+ONBUILD COPY requirements.txt /usr/src/app/
+ONBUILD RUN pip install -r requirements.txt
+
+ONBUILD COPY . /usr/src/app
